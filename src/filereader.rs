@@ -8,12 +8,14 @@ pub struct FileReader {
 }
 
 impl FileReader {
+    //Create a new FileReader
     pub fn new(path: &str) -> FileReader {
         FileReader {
             file: File::open(path).unwrap(),
         }
     }
 
+    //Read a file and insert its contents to a WordList
     pub fn read_to_wordlist(&mut self, wl: &mut WordList) {
         let mut buffer = String::new();
         self.file.read_to_string(&mut buffer);
@@ -27,6 +29,7 @@ impl FileReader {
         }
     }
 
+    //Print text to console from file
     pub fn read_to_console(&mut self) {
         let mut buffer = String::new();
         self.file.read_to_string(&mut buffer);

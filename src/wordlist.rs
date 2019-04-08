@@ -6,13 +6,14 @@ pub struct WordList {
 }
 
 impl WordList {
-    //Public functions
+    //Create a new WordList
     pub fn new() -> WordList {
         WordList {
             words: HashMap::new()
         }
     }
 
+    //Add a word to the WordList
     pub fn add(&mut self, string_1: String, string_2: String) {
         if self.words.contains_key(&string_1) {
             let mut a= self.words.get_mut(&string_1).unwrap();
@@ -30,6 +31,7 @@ impl WordList {
         }
     }
 
+    //Print the contents of the WordList (Word 1, Word 2, # of times appeared in text)
     pub fn print(&mut self) {
         for x in self.words.keys() {
             for y in self.words.get(x).unwrap().keys() {
@@ -38,7 +40,7 @@ impl WordList {
         }
     }
 
-    //Private functions
+    //Calculate the sum of values
     pub fn values_sum(&mut self) -> usize {
         let mut sum: usize = 0;
         for x in self.words.keys() {
@@ -50,7 +52,8 @@ impl WordList {
         return sum;
     }
 
-    pub fn next_word(&mut self, string: String) {
-
+    //Calculate next word
+    pub fn next_word(&mut self, string: String) -> String {
+        §
     }
 }
