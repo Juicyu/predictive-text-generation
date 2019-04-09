@@ -1,16 +1,16 @@
-mod wordlist;
+mod wordmap;
 mod filereader;
 
-use crate::wordlist::WordList;
+use crate::wordmap::WordMap;
 use crate::filereader::FileReader;
 
 const PATH: &str = "src/text.txt";
 
 fn main() {
     let mut file_reader = FileReader::new(PATH);
-    let mut word_list = WordList::new();
+    let mut word_map = WordMap::new();
 
-    file_reader.read_to_wordlist(&mut word_list);
+    file_reader.read_to_wordmap(&mut word_map);
 
-    word_list.print();
+    word_map.print();
 }

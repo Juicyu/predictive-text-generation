@@ -1,19 +1,19 @@
 use std::collections::HashMap;
 use core::borrow::BorrowMut;
 
-pub struct WordList {
+pub struct WordMap {
     words: HashMap<String, HashMap<String, usize>>,
 }
 
-impl WordList {
-    //Create a new WordList
-    pub fn new() -> WordList {
-        WordList {
+impl WordMap {
+    //Create a new WordMap
+    pub fn new() -> WordMap {
+        WordMap {
             words: HashMap::new()
         }
     }
 
-    //Add a word to the WordList
+    //Add a word to the WordMap
     pub fn add(&mut self, string_1: String, string_2: String) {
         if self.words.contains_key(&string_1) {
             let mut a= self.words.get_mut(&string_1).unwrap();
@@ -31,7 +31,7 @@ impl WordList {
         }
     }
 
-    //Print the contents of the WordList (Word 1, Word 2, # of times appeared in text)
+    //Print the contents of the WordMap (Word 1, Word 2, # of times appeared in text)
     pub fn print(&mut self) {
         for x in self.words.keys() {
             for y in self.words.get(x).unwrap().keys() {
@@ -54,6 +54,6 @@ impl WordList {
 
     //Calculate next word
     pub fn next_word(&mut self, string: String) -> String {
-        §
+        "nice".to_string()
     }
 }

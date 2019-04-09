@@ -1,5 +1,5 @@
 use std::fs::File;
-use crate::wordlist::WordList;
+use crate::wordmap::WordMap;
 use std::io::Read;
 use std::vec::Vec;
 
@@ -15,8 +15,8 @@ impl FileReader {
         }
     }
 
-    //Read a file and insert its contents to a WordList
-    pub fn read_to_wordlist(&mut self, wl: &mut WordList) {
+    //Read a file and insert its contents to a WordMap
+    pub fn read_to_wordmap(&mut self, wl: &mut WordMap) {
         let mut buffer = String::new();
         self.file.read_to_string(&mut buffer);
 
