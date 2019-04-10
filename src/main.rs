@@ -13,4 +13,10 @@ fn main() {
     file_reader.read_to_wordmap(&mut word_map);
 
     word_map.print();
+
+    println!();
+
+    for x in 0..10 {
+        println!("{}", word_map.generate_next_word("coffee".to_string()).unwrap());
+    }
 }

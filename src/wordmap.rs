@@ -1,5 +1,8 @@
+use rand;
+
 use std::collections::HashMap;
-use core::borrow::BorrowMut;
+use core::borrow::{BorrowMut, Borrow};
+use rand::Rng;
 
 pub struct WordMap {
     words: HashMap<String, HashMap<String, usize>>,
@@ -43,11 +46,11 @@ impl WordMap {
     }
 
     //Calculate the sum of values
-    pub fn values_sum(&mut self) -> usize {
-        let mut sum: usize = 0;
+    pub fn sum_of_appearances_f64(&mut self) -> f64 {
+        let mut sum: f64 = 0.0;
         for x in self.words.keys() {
             for y in self.words.get(x).unwrap().values() {
-                sum += y;
+                sum += *y as f64;
             }
         }
 
@@ -55,7 +58,21 @@ impl WordMap {
     }
 
     //Calculate next word
-    pub fn next_word(&mut self, string: String) -> String {
-        "nice".to_string()
+    pub fn generate_next_word(&mut self, string: String) -> Option<String> {
+        let sum_of_values: f64 = self.sum_of_appearances_f64();
+        let mut data: &HashMap<String, HashMap<String, usize>> = &self.words;
+        let mut sum: f64 = 0.0;
+        let rng: f64 = rand::thread_rng().gen();
+
+        if data.contains_key(&string) {
+            for x in data.get(&string).unwrap().keys() {
+                let value = *data.get(&string).unwrap().get(x).unwrap();
+                sum += (value as f64) / sum_of_values;
+                if sum >= rng {
+                    return Some(x.to_string());
+                }
+            }
+        }
+        return None;
     }
 }
