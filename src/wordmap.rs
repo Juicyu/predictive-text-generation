@@ -58,7 +58,7 @@ impl WordMap {
     }
 
     //Calculate next word
-    pub fn generate_next_word(&mut self, string: String) -> Option<String> {
+    pub fn gen_next_word(&mut self, string: String) -> Option<String> {
         let sum_of_values: f64 = self.sum_of_appearances_f64();
         let mut data: &HashMap<String, HashMap<String, usize>> = &self.words;
         let mut sum: f64 = 0.0;
@@ -74,5 +74,30 @@ impl WordMap {
             }
         }
         return None;
+    }
+
+    pub fn gen_sentence(&mut self, max_length: usize) -> String {
+        let mut sentence = String::new();
+        let word = self.words.keys().nth(
+            rand::thread_rng().gen_range(0, self.words.len())
+        ).unwrap().to_string();
+
+        for x in 0..=max_length {
+            sentence.push_str(word.as_str());
+            let word_option = self.gen_next_word(word.to_string());
+
+            if word_option.is_some() {
+                let word = &word_option.unwrap();
+            } else {
+                sentence.push('.');
+                return sentence;
+            }
+
+            sentence.push(' ');
+        }
+
+        sentence.pop();
+        return sentence + ".";
+
     }
 }

@@ -17,6 +17,8 @@ fn main() {
     println!();
 
     for x in 0..10 {
-        println!("{}", word_map.generate_next_word("coffee".to_string()).unwrap());
+        println!("{}", word_map.gen_sentence(10));
+        println!();
     }
+
 }
