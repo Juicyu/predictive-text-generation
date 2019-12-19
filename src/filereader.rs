@@ -9,9 +9,9 @@ pub struct FileReader {
 
 impl FileReader {
     //Create a new FileReader
-    pub fn new(path: &str) -> FileReader {
+    pub fn new(path: &std::path::PathBuf) -> FileReader {
         FileReader {
-            file: File::open(path).unwrap(),
+            file: File::open(path).expect("Could not read file"),
         }
     }
 

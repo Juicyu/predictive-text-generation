@@ -17,8 +17,6 @@ impl WordMap {
     }
 
     //Add a word to the WordMap
-
-    //This part needs rework
     pub fn add(&mut self, string_1: String, string_2: String) {
         if self.words.contains_key(&string_1) {
             let mut a= self.words.get_mut(&string_1).unwrap();

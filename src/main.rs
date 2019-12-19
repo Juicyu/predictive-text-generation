@@ -4,21 +4,34 @@ mod filereader;
 use crate::wordmap::WordMap;
 use crate::filereader::FileReader;
 
-const PATH: &str = "src/text.txt";
+use structopt::StructOpt;
+use std::fs::File;
+
+#[derive(StructOpt)]
+struct Cli {
+    //Path to read the file from
+    #[structopt(parse(from_os_str))]
+    path: std::path::PathBuf,
+}
 
 fn main() {
-    let mut file_reader = FileReader::new(PATH);
-    let mut word_map = WordMap::new();
+    // Get arguments
+    let args = Cli::from_args();
 
-    file_reader.read_to_wordmap(&mut word_map);
+    // Create filereader from path
+    let mut file_reader = FileReader::new(&args.path);
+    let mut wordmap = WordMap::new();
 
-    word_map.print();
+    file_reader.read_to_wordmap(&mut wordmap);
 
-    println!();
+    println!("{}", wordmap.gen_sentence(5));
 
-    for x in 0..10 {
-        println!("{}", word_map.gen_sentence(10));
-        println!();
-    }
 
+
+
+    /*
+
+
+    println!("{}", word_map.gen_sentence(args.words));
+    */
 }
