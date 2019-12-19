@@ -19,7 +19,7 @@ impl WordMap {
     //Add a word to the WordMap
     pub fn add(&mut self, string_1: String, string_2: String) {
         if self.words.contains_key(&string_1) {
-            let mut a= self.words.get_mut(&string_1).unwrap();
+            let a= self.words.get_mut(&string_1).unwrap();
 
             if a.contains_key(&string_2) {
                 a.insert(string_2.to_string(), a.get(&string_2.to_string()).unwrap() + 1);
@@ -58,7 +58,7 @@ impl WordMap {
     //Calculate next word
     pub fn gen_next_word(&mut self, string: String) -> Option<String> {
         let sum_of_values: f64 = self.sum_of_appearances_f64();
-        let mut data: &HashMap<String, HashMap<String, usize>> = &self.words;
+        let data: &HashMap<String, HashMap<String, usize>> = &self.words;
         let mut sum: f64 = 0.0;
         let rng: f64 = rand::thread_rng().gen();
 
@@ -80,7 +80,7 @@ impl WordMap {
             rand::thread_rng().gen_range(0, self.words.len())
         ).unwrap().to_string();
 
-        for x in 0..=max_length {
+        for _i in 0..=max_length {
             sentence.push_str(word.as_str());
             let word_option = self.gen_next_word(word.to_string());
 
