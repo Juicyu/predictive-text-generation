@@ -15,6 +15,7 @@ struct Cli {
     //Path to read the file from
     #[structopt(parse(from_os_str))]
     path: std::path::PathBuf,
+    amount: usize
 }
 
 fn main() {
@@ -22,12 +23,15 @@ fn main() {
     let args = Cli::from_args();
 
     // Create filereader from path
-    let mut file_reader = FileReader::new(&args.path);
+    let mut fileread = FileReader::new(&args.path);
     let mut wordmap = WordMap::new();
 
-    file_reader.read_to_wordmap(&mut wordmap);
+    // Read contents to wordmap
+    fileread.read_to_wordmap(&mut wordmap);
+
+    // Create a WordGenerator based on wordmap
     let wordgen = WordGenerator::new(wordmap);
 
-    println!("{}", wordgen.generate(3));
-    print!("Printed")
+    // Generate required amount of words
+    println!("{}", wordgen.generate(10));
 }

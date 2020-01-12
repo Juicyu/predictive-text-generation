@@ -17,6 +17,7 @@ impl FileReader {
 
     //Read a file and insert its contents to a WordMap
     // NOTE: This is highly inefficient for memory as all file content is stored at the same time.
+    // TODO: REWORK
     pub fn read_to_wordmap(&mut self, wl: &mut WordMap) {
         //Create a string to read the file in
         let mut buffer = String::new();
@@ -31,13 +32,5 @@ impl FileReader {
                 wl.add(words[x].to_string(), words[x + 1].to_string());
             }
         }
-    }
-
-    //Print text to console from file
-    pub fn read_to_console(&mut self) {
-        let mut buffer = String::new();
-        self.file.read_to_string(&mut buffer).expect_err("Could not read file");
-
-        println!("{}", buffer);
     }
 }
