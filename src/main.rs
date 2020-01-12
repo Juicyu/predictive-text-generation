@@ -1,11 +1,14 @@
 mod wordmap;
 mod filereader;
+mod word_generator;
 
 use crate::wordmap::WordMap;
 use crate::filereader::FileReader;
+use crate::word_generator::WordGenerator;
 
 use structopt::StructOpt;
 use std::fs::File;
+
 
 #[derive(StructOpt)]
 struct Cli {
@@ -23,15 +26,8 @@ fn main() {
     let mut wordmap = WordMap::new();
 
     file_reader.read_to_wordmap(&mut wordmap);
+    let wordgen = WordGenerator::new(wordmap);
 
-    println!("{}", wordmap.gen_sentence(5));
-
-
-
-
-    /*
-
-
-    println!("{}", word_map.gen_sentence(args.words));
-    */
+    println!("{}", wordgen.generate(3));
+    print!("Printed")
 }
