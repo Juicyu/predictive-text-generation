@@ -41,6 +41,8 @@ impl WordGenerator {
                 for word in followers.keys() {
                     if followers.get(word).unwrap() >= &sum {
                         return word.clone();
+                    } else {
+                        sum += *followers.get(word).unwrap();
                     }
                 }
 

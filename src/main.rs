@@ -7,13 +7,14 @@ use utils::word_generator::*;
 use structopt::StructOpt;
 use std::fs::File;
 
+// TODO: Add better error handling
 
 #[derive(StructOpt)]
 struct Cli {
     //Path to read the file from
     #[structopt(parse(from_os_str))]
     path: std::path::PathBuf,
-    amount: usize
+    amount: i32
 }
 
 fn main() {
@@ -31,5 +32,5 @@ fn main() {
     let wordgen = WordGenerator::new(wordmap);
 
     // Generate required amount of words
-    println!("{}", wordgen.generate(10));
+    println!("{}", wordgen.generate(args.amount));
 }
