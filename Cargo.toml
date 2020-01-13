@@ -1,7 +1,7 @@
 [package]
 name = "generate-txt"
-version = "0.1.0"
-authors = ["Juicyu <juicyuuu@gmail.com>"]
+version = "1.0"
+authors = ["jusvait"]
 edition = "2018"
 
 [dependencies]
