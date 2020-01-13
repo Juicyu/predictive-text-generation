@@ -1,9 +1,9 @@
 use rand;
-
-use std::collections::HashMap;
-use core::borrow::{BorrowMut, Borrow};
 use rand::Rng;
 use rand::seq::IteratorRandom;
+use core::borrow::{BorrowMut, Borrow};
+use std::collections::HashMap;
+
 
 pub struct WordMap {
     words: HashMap<String, HashMap<String, usize>>,
@@ -27,7 +27,7 @@ impl WordMap {
         if !(self.words.is_empty()) {
             self.words.keys().into_iter().choose(&mut rand::thread_rng()).unwrap().clone()
         } else {
-            String::from("test")
+            panic!("Not enough words in sample.")
         }
     }
 
@@ -37,7 +37,7 @@ impl WordMap {
         if self.words.contains_key(&first) {
             let a= self.words.get_mut(&first).unwrap();
 
-            if a.contains_key(&string_2) {
+            if a.contains_key(&second) {
 
                 a.insert(second.to_string(), a.get(&second.to_string()).unwrap() + 1);
             } else {
@@ -47,7 +47,7 @@ impl WordMap {
             let mut hashmap = HashMap::<String, usize>::new();
             hashmap.insert(second.to_string(), 1);
 
-            self.words.insert(first.to_string(), hm);
+            self.words.insert(first.to_string(), hashmap);
         }
     }
 }

@@ -1,10 +1,8 @@
-mod wordmap;
-mod filereader;
-mod word_generator;
+mod utils;
 
-use crate::wordmap::WordMap;
-use crate::filereader::FileReader;
-use crate::word_generator::WordGenerator;
+use utils::filereader::*;
+use utils::wordmap::*;
+use utils::word_generator::*;
 
 use structopt::StructOpt;
 use std::fs::File;

@@ -1,7 +1,8 @@
 use std::fs::File;
-use crate::wordmap::WordMap;
 use std::io::{Read, BufReader, BufRead};
 use std::vec::Vec;
+
+use super::wordmap::WordMap;
 
 pub struct FileReader {
     file: File
